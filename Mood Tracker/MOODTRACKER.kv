@@ -1,0 +1,37 @@
+<gridlayout2>
+  
+    name : name
+    age : age
+    gender : gender
+    
+    GridLayout:
+        cols:1
+        size: root.width , root.height
+        
+        GridLayout:
+            cols:2
+
+            Label:
+                text: "Name"
+            TextInput:
+                id: name
+                multiline: False
+
+            Label:
+                text: "Age"
+            TextInput:
+                id: age
+                multiline: False  
+            
+            Label:
+                text: "Gender"
+            TextInput:
+                id: gender
+                multiline: False 
+
+        Button:
+            text: "submit"
+            font_size: 32
+            on_press: root.finalize_input()
+            background_normal: ''
+            background_color: (150/255,0,180/255,1)

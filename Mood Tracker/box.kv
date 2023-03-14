@@ -1,0 +1,37 @@
+
+#: import utils kivy.utils
+<MyBoxLayout>
+    
+    canvas.before:
+        Color:
+            rgba: utils.get_color_from_hex ('#EFFBDA')
+        Rectangle:
+            pos:self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: "vertical"
+        size:root.width , root.height
+        spacing: 20
+        padding: 70
+        
+        Button:
+            text: "yes"
+            font_size: 32
+            background_normal: ''
+            background_color: utils.get_color_from_hex('#ff0660')
+            size_hint: (None,None)
+            width: 200
+            height: 50
+            pos_hint: {'center_x': 0.5}
+            
+            
+        Button:
+            text: "no"
+            font_size: 32
+            background_normal: ''
+            background_color: utils.get_color_from_hex('#016c9a')
+            size_hint: (None,None)
+            width: 200
+            height: 50
+            pos_hint: {'center_x': 0.5}
