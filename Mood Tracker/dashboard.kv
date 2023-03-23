@@ -1,0 +1,143 @@
+#Με τα παρακάτω θέτω χρώματα για τα widgets μέσα στο drawer
+
+<DrawerClickableItem@MDNavigationDrawerItem>
+    text_color: "#cccccc"
+    icon_color: "#cccccc"
+    ripple_color: "#c5bdd2"
+    selected_color: "#0c6c4d"
+
+<DrawerLabelItem@MDNavigationDrawerItem>
+    text_color: "#4a4939"
+    icon_color: "#4a4939"
+    focus_behavior: False
+    selected_color: "#4a4939"
+    _no_ripple_effect: True
+    
+
+MDScreen:
+
+    MDNavigationLayout:
+
+        MDScreenManager:
+
+            MDScreen:
+
+                # Δημιουργία ενός toolbar
+                MDTopAppBar: 
+                    title: "Menu"
+                    elevation: 2
+                    pos_hint: {"top": 1}
+                    left_action_items:
+                        #Με την παρακάτω γραμμή δίνουμε λειτουργικότητα στο toolbar
+                        [['menu', lambda x: nav_drawer.set_state("open")]] 
+                
+                GridLayout:
+                    cols:2
+                    pos_hint: {'center_y': 0.45}
+                    size_hint: 1, 0.9
+                    padding: 25
+                    spacing: 10
+                
+                    MDCard:
+                        
+                        size: 
+                        elevation: 2
+                        padding: 25
+                        spacing:25
+                        orientation: "vertical"
+                        
+                        
+                        MDLabel:
+                            text: "hello"
+                            halign: "center"
+
+                        MDLabel:
+                            text: "no"    
+                            
+                    
+                    MDCard:
+
+                        elevation: 2
+
+                        orientation: "horizontal"
+
+                    MDCard:
+
+                        elevation: 2
+                        padding: 25
+                        spacing:25
+                        orientation: "horizontal"
+                    
+                    MDCard:
+
+                        elevation: 2
+                        padding: 25
+                        spacing:25
+                        orientation: "horizontal"
+
+
+                    
+
+
+        # Δημιουργία του Drawer
+        MDNavigationDrawer:
+            id: nav_drawer
+            radius: (0, 16, 16, 0)
+            
+            MDNavigationDrawerMenu:
+
+                # Τίτλος του Drawer
+                MDNavigationDrawerHeader:
+                    title: "MindWave"
+                    title_color: "#cccccc"
+                    spacing: "4dp"
+                    padding: "12dp", 0, 0, "12dp"
+
+                MDNavigationDrawerDivider:
+                
+                # Επιλογές του Drawer με εικονίδια
+                DrawerClickableItem:
+                    id: account
+                    icon: "account"
+                    text: "Λογαριασμός"
+                
+                    
+                DrawerClickableItem:
+                    id: stats
+                    icon: "chart-line-variant"
+                    text: "Στατιστικά"
+                    
+                DrawerClickableItem:
+                    id: calendar
+                    icon: "calendar-multiselect"
+                    text: "Ημερολόγιο"
+                    
+                DrawerClickableItem:
+                    id: notes
+                    icon: "note-outline"
+                    text: "Σημειώσεις"
+                    
+                DrawerClickableItem:
+                    id: settings
+                    icon: "cog"
+                    text: "Ρυθμίσεις"
+                        
+                DrawerClickableItem:
+                    id: contact
+                    icon: "account-group"
+                    text: "Επικοινωνία"
+
+                MDNavigationDrawerDivider:
+                
+                DrawerLabelItem:
+                    icon: "language-python"
+                    text: "Mindwave version 0.0.1"
+        
+
+
+
+
+
+   
+
+            
