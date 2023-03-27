@@ -1,0 +1,315 @@
+<Round_Rectangle@MDCard>
+    md_bg_color: app.theme_cls.accent_color
+    elevation: 1
+
+<Q_Label@MDLabel>
+    halign: "center"
+    color: 1,1,1,1
+    font_style: "H6"
+# κατσακευή πολλαπλών group checkboxes για καθε ερώτηση
+<Check_Q1@MDCheckbox>:
+    group: 'group1'
+    size_hint: None, None
+    size: dp(48), dp(48)
+    pos_hint: {'top':1}
+
+<Check_Q2@MDCheckbox>:
+    group: 'group2'
+    size_hint: None, None
+    size: dp(48), dp(48)
+    pos_hint: {'top':1}
+
+<Check_Q3@MDCheckbox>:
+    group: 'group3'
+    size_hint: None, None
+    size: dp(48), dp(48)
+    pos_hint: {'top':1}
+
+<Check_Q4@MDCheckbox>:
+    group: 'group4'
+    size_hint: None, None
+    size: dp(48), dp(48)
+    pos_hint: {'top':1}
+
+#Με τα παρακάτω θέτω χρώματα για τα widgets μέσα στο drawer
+
+<DrawerClickableItem@MDNavigationDrawerItem>
+    text_color: "#4a4939"
+    icon_color: "#4a4939"
+    ripple_color: "#c5bdd2"
+    selected_color: "#0c6c4d"
+
+<DrawerLabelItem@MDNavigationDrawerItem>
+    text_color: "#4a4939"
+    icon_color: "#4a4939"
+    focus_behavior: False
+    selected_color: "#4a4939"
+    _no_ripple_effect: True
+    
+
+MDScreen:
+
+    MDNavigationLayout:
+
+        MDScreenManager:
+
+            MDScreen:
+
+                # Δημιουργία ενός toolbar
+                MDTopAppBar: 
+                    title: "Menu"
+                    elevation: 2
+                    pos_hint: {"top": 1}
+                    left_action_items:
+                        #Με την παρακάτω γραμμή δίνουμε λειτουργικότητα στο toolbar
+                        [['menu', lambda x: nav_drawer.set_state("open")]] 
+                
+                # Δημιουργία των cards / πλαισίων του app
+                GridLayout:
+                    cols:2
+                    pos_hint: {'center_y': 0.45}
+                    size_hint: 1, 0.9
+                    padding: 25
+                    spacing: 10
+                    
+                
+                    # account 
+                    MDCard:
+                        
+                        size: 
+                        elevation: 2
+                        padding: 25
+                        spacing:25
+                        orientation: "vertical"
+                        
+                       
+                            
+                    # 1ο card ερωτήσεων
+                    
+                    MDCard:
+                        elevation: 2
+                        orientation: "vertical"
+                        padding: 5
+                        
+                        GridLayout:
+                            cols: 2
+                            padding: 5
+                            spacing:5
+                            
+                            
+                            Round_Rectangle:
+                                Q_Label:
+                                    text: "How do you feel"
+
+                                    
+                                
+                            GridLayout:
+                                cols:3
+                                
+                                BoxLayout:
+                                    orientation:'vertical'
+                                    MDLabel:
+                                        text: "happy" 
+                                        halign: "center" 
+                                    Check_Q1:
+                                        pos_hint: {'center_x': 0.5 , 'top': 0.5}
+                                
+                                BoxLayout:
+                                    orientation:'vertical'
+                                    MDLabel:
+                                        text: "neutral"
+                                        halign: "center" 
+                                    Check_Q1:
+                                        pos_hint: {'center_x': 0.5 , 'top': 0.5}
+                                
+                                BoxLayout:
+                                    orientation:'vertical'
+                                    MDLabel:
+                                        text: "sad"
+                                        halign: "center" 
+                                    Check_Q1:
+                                        pos_hint: {'center_x': 0.5 , 'top': 0.5}
+                            
+                            Round_Rectangle:
+                                Q_Label:
+                                    text: "How do you feel 2"
+                                
+                            
+                            GridLayout:
+                                cols:3
+                                
+                                BoxLayout:
+                                    orientation:'vertical'
+                                    MDLabel:
+                                        text: "happy"
+                                        halign: "center"     
+                                    Check_Q2:
+                                        pos_hint: {'center_x': 0.5 , 'top': 0.5}
+                                
+                                BoxLayout:
+                                    orientation:'vertical'
+                                    MDLabel:
+                                        text: "neutral"
+                                        halign: "center"     
+                                    Check_Q2:
+                                        pos_hint: {'center_x': 0.5 , 'top': 0.5}
+                                
+                                BoxLayout:
+                                    orientation: 'vertical'
+                                    MDLabel:
+                                        text: "sad" 
+                                        halign: "center"   
+                                    Check_Q2:
+                                        pos_hint: {'center_x': 0.5 , 'top': 0.5}
+                                       
+                            Round_Rectangle:
+                                Q_Label:
+                                    text: "How do you feel 2"
+                            
+                            GridLayout:
+                                cols:3
+                                
+                                BoxLayout:
+                                    orientation:'vertical'
+                                    MDLabel:
+                                        text: "happy"
+                                        halign: "center"     
+                                    Check_Q3:
+                                        pos_hint: {'center_x': 0.5 , 'top': 0.5}
+                                
+                                BoxLayout:
+                                    orientation:'vertical'
+                                    MDLabel:
+                                        text: "neutral"
+                                        halign: "center"     
+                                    Check_Q3:
+                                        pos_hint: {'center_x': 0.5 , 'top': 0.5}
+                                
+                                BoxLayout:
+                                    orientation:'vertical'
+                                    MDLabel:
+                                        text: "sad" 
+                                        halign: "center"   
+                                    Check_Q3:
+                                        pos_hint: {'center_x': 0.5 , 'top': 0.5}
+
+                            Round_Rectangle:
+                                Q_Label:
+                                    text: "How do you feel 3"
+                            
+                            GridLayout:
+                                cols:3
+                                
+                                BoxLayout:
+                                    orientation:'vertical'
+                                    MDLabel:
+                                        text: "happy"
+                                        halign: "center"     
+                                    Check_Q4:
+                                        pos_hint: {'center_x': 0.5 , 'top': 0.5}
+                                
+                                BoxLayout:
+                                    orientation:'vertical'
+                                    MDLabel:
+                                        text: "neutral"
+                                        halign: "center"     
+                                    Check_Q4:
+                                        pos_hint: {'center_x': 0.5 , 'top': 0.5}
+                                
+                                BoxLayout:
+                                    orientation:'vertical'
+                                    MDLabel:
+                                        text: "sad" 
+                                        halign: "center"   
+                                    Check_Q4:
+                                        pos_hint: {'center_x': 0.5 , 'top': 0.5}
+
+            #MDScreen:
+                                   
+                            
+                                
+
+ 
+
+                    # στατιστικά
+                    MDCard:
+
+                        elevation: 2
+                        padding: 25
+                        spacing:25
+                        orientation: "horizontal"
+                    
+                    # ερωτήσεις 2
+                    MDCard:
+
+                        elevation: 2
+                        padding: 25
+                        spacing:25
+                        orientation: "horizontal"
+
+
+                    
+
+
+        # Δημιουργία του Drawer
+        MDNavigationDrawer:
+            id: nav_drawer
+            radius: (0, 16, 16, 0)
+            
+            MDNavigationDrawerMenu:
+
+                # Τίτλος του Drawer
+                MDNavigationDrawerHeader:
+                    title: "MindWave"
+                    title_color: "#4a4939"
+                    spacing: "4dp"
+                    padding: "12dp", 0, 0, "12dp"
+
+                MDNavigationDrawerDivider:
+                
+                # Επιλογές του Drawer με εικονίδια
+                DrawerClickableItem:
+                    id: account
+                    icon: "account"
+                    text: "Λογαριασμός"
+                
+                    
+                DrawerClickableItem:
+                    id: stats
+                    icon: "chart-line-variant"
+                    text: "Στατιστικά"
+                    
+                DrawerClickableItem:
+                    id: calendar
+                    icon: "calendar-multiselect"
+                    text: "Ημερολόγιο"
+                    
+                DrawerClickableItem:
+                    id: notes
+                    icon: "note-outline"
+                    text: "Σημειώσεις"
+                    
+                DrawerClickableItem:
+                    id: settings
+                    icon: "cog"
+                    text: "Ρυθμίσεις"
+                        
+                DrawerClickableItem:
+                    id: contact
+                    icon: "account-group"
+                    text: "Επικοινωνία"
+
+                MDNavigationDrawerDivider:
+                
+                DrawerLabelItem:
+                    icon: "language-python"
+                    text: "Mindwave version 0.0.1"
+        
+
+
+
+
+
+   
+
+            
