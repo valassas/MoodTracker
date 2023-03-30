@@ -1,3 +1,20 @@
+#Με τα παρακάτω θέτω χρώματα για τα widgets μέσα στο drawer
+
+<DrawerClickableItem@MDNavigationDrawerItem>
+    text_color: "#4a4939"
+    icon_color: "#4a4939"
+    ripple_color: "#c5bdd2"
+    selected_color: "#0c6c4d"
+
+<DrawerLabelItem@MDNavigationDrawerItem>
+    text_color: "#4a4939"
+    icon_color: "#4a4939"
+    focus_behavior: False
+    selected_color: "#4a4939"
+    _no_ripple_effect: True
+
+
+        
 <Round_Rectangle@MDCard>
     md_bg_color: app.theme_cls.accent_color
     elevation: 1
@@ -31,30 +48,31 @@
     size: dp(48), dp(48)
     pos_hint: {'top':1}
 
-#Με τα παρακάτω θέτω χρώματα για τα widgets μέσα στο drawer
 
-<DrawerClickableItem@MDNavigationDrawerItem>
-    text_color: "#4a4939"
-    icon_color: "#4a4939"
-    ripple_color: "#c5bdd2"
-    selected_color: "#0c6c4d"
-
-<DrawerLabelItem@MDNavigationDrawerItem>
-    text_color: "#4a4939"
-    icon_color: "#4a4939"
-    focus_behavior: False
-    selected_color: "#4a4939"
-    _no_ripple_effect: True
     
 
 MDScreen:
-
+    nav_drawer: nav_drawer
+    screen_manager: screen_manager
+    layout:layout
+    # Δημιουργία ενός toolbar
+    MDTopAppBar: 
+        title: "Menu"
+        elevation: 2
+        pos_hint: {"top": 1}
+        left_action_items:
+            #Με την παρακάτω γραμμή δίνουμε λειτουργικότητα στο toolbar
+            [['menu', lambda x: nav_drawer.set_state("open")]]
+    
+    
     MDNavigationLayout:
-
+        
         MDScreenManager:
-
+            id: screen_manager
+            
             MDScreen:
-
+                name: "dashboard"
+                
                 # Δημιουργία ενός toolbar
                 MDTopAppBar: 
                     title: "Menu"
@@ -62,7 +80,10 @@ MDScreen:
                     pos_hint: {"top": 1}
                     left_action_items:
                         #Με την παρακάτω γραμμή δίνουμε λειτουργικότητα στο toolbar
-                        [['menu', lambda x: nav_drawer.set_state("open")]] 
+                        [['menu', lambda x: nav_drawer.set_state("open")]]
+                
+                
+                
                 
                 # Δημιουργία των cards / πλαισίων του app
                 GridLayout:
@@ -72,17 +93,29 @@ MDScreen:
                     padding: 25
                     spacing: 10
                     
-                
+                    BoxLayout:
+                        orientation:'vertical'
+                        spacing: 10
                     # account 
-                    MDCard:
-                        
-                        size: 
-                        elevation: 2
-                        padding: 25
-                        spacing:25
-                        orientation: "vertical"
-                        
-                       
+                        MDCard:
+                            
+                            size: 
+                            elevation: 2
+                            padding: 25
+                            spacing:25
+                            orientation: "vertical"
+                        # στατιστικά
+
+                        MDCard:
+                            md_bg_color: app.theme_cls.primary_color
+                            elevation: 2
+                            padding: 25
+                            spacing:25
+                            orientation: "horizontal"
+                            
+                            
+
+                                
                             
                     # 1ο card ερωτήσεων
                     
@@ -90,6 +123,7 @@ MDScreen:
                         elevation: 2
                         orientation: "vertical"
                         padding: 5
+                        
                         
                         GridLayout:
                             cols: 2
@@ -224,29 +258,38 @@ MDScreen:
                                     Check_Q4:
                                         pos_hint: {'center_x': 0.5 , 'top': 0.5}
 
-            #MDScreen:
+            MDScreen:
+                name: "stats"
+                
+                GridLayout:
+                    cols:1
+                    pos_hint: {'center_y': 0.45}
+                    size_hint: 1, 0.9
+                    padding: 25
+                    spacing: 10
+                    MDCard:
+                        id: layout
+                        pos_hint: {'center_x': 0.5}
+                        elevation: 2
+                        orientation: "vertical"
+                MDFillRoundFlatIconButton:
+                    text: "Main Screen"
+                    icon: "arrow-right-thick"
+                    font_size: 18
+                    md_bg_color: app.theme_cls.primary_color      
+                    pos_hint: {'right': 0.97,'top': 0.1}
+                    on_release: 
+                        root.screen_manager.current = "dashboard"
+            
+
                                    
                             
                                 
 
  
 
-                    # στατιστικά
-                    MDCard:
 
-                        elevation: 2
-                        padding: 25
-                        spacing:25
-                        orientation: "horizontal"
                     
-                    # ερωτήσεις 2
-                    MDCard:
-
-                        elevation: 2
-                        padding: 25
-                        spacing:25
-                        orientation: "horizontal"
-
 
                     
 
@@ -255,9 +298,12 @@ MDScreen:
         MDNavigationDrawer:
             id: nav_drawer
             radius: (0, 16, 16, 0)
-            
-            MDNavigationDrawerMenu:
 
+            
+
+            MDNavigationDrawerMenu:
+                nav_drawer: nav_drawer
+                
                 # Τίτλος του Drawer
                 MDNavigationDrawerHeader:
                     title: "MindWave"
@@ -278,6 +324,9 @@ MDScreen:
                     id: stats
                     icon: "chart-line-variant"
                     text: "Στατιστικά"
+                    on_release: 
+                        root.nav_drawer.set_state("close")
+                        root.screen_manager.current = "stats"
                     
                 DrawerClickableItem:
                     id: calendar
@@ -304,7 +353,8 @@ MDScreen:
                 DrawerLabelItem:
                     icon: "language-python"
                     text: "Mindwave version 0.0.1"
-        
+            
+                  
 
 
 
