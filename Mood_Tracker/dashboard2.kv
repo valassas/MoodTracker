@@ -1,0 +1,295 @@
+<MainScreenButton@MDRectangleFlatIconButton>
+    text: "Main Screen"
+    icon: "arrow-right-thick"
+    font_size: 18
+    text_color: "#ffffff"     
+    line_color: "#ffffff"
+    icon_color: "#ffffff"
+    pos_hint: {'right': 0.99,'top': 0.985}
+    
+
+<DashboardCard@MDCard>
+    md_bg_color: "#ffffff"
+    elevation: 2
+    orientation: "vertical"
+    padding: 5
+
+<CheckBoxCard@MDCard>
+    orientation: 'vertical'
+    md_bg_color: "#eeeeee"
+    elevation: 1
+
+<CheckBoxLabel@MDLabel>
+    halign: "center"
+    color: "#444444"
+    font_style: "H6"
+    font_size: 18
+
+#Με τα παρακάτω θέτω χρώματα για τα widgets μέσα στο drawer
+
+<DrawerClickableItem@MDNavigationDrawerItem>
+    text_color: "#4a4939"
+    icon_color: "#4a4939"
+    ripple_color: "#c5bdd2"
+    selected_color: "#0c6c4d"
+
+<DrawerLabelItem@MDNavigationDrawerItem>
+    text_color: "#4a4939"
+    icon_color: "#4a4939"
+    focus_behavior: False
+    selected_color: "#4a4939"
+    _no_ripple_effect: True
+
+<Round_Rectangle@MDCard>
+    md_bg_color: "#5F9EA0"
+    elevation: 1
+
+<Q_Label@MDLabel>
+    halign: "center"
+    color: 1,1,1,1
+    font_style: "H5"
+
+MDScreen:
+    md_bg_color: "#ffffff"
+    nav_drawer: nav_drawer
+    screen_manager: screen_manager
+    layout:layout
+
+    # Δημιουργία ενός toolbar
+    MDTopAppBar: 
+        title: "Menu"
+        elevation: 2
+        pos_hint: {"top": 1}
+        md_bg_color: "#5F9EA0"
+        left_action_items:
+            #Με την παρακάτω γραμμή δίνουμε λειτουργικότητα στο toolbar
+            [['menu', lambda x: nav_drawer.set_state("open")]]
+    
+    
+    MDNavigationLayout:
+        
+        MDScreenManager:
+            id: screen_manager
+            
+            
+            MDScreen:
+                name: "dashboard"
+                
+                # Δημιουργία των cards / πλαισίων του app
+                GridLayout:
+                    cols:2
+                    pos_hint: {'center_y': 0.46}
+                    size_hint: 1, .95
+                    padding: 25
+                    spacing: 10
+                    
+                    BoxLayout:
+                        orientation:'vertical'
+                        spacing: 10
+                       
+                        # account card 
+                        DashboardCard: 
+                            elevation: 2
+                            padding: 10
+                            spacing: 10
+                            orientation: "vertical"
+                            
+                            
+                            MDGridLayout:
+                                cols:1
+                                spacing: 5
+                                MDCard:
+                                    md_bg_color: "#5F9EA0"
+                                    BoxLayout:
+                                        orientation:'horizontal'
+                                        MDRectangleFlatIconButton:
+                                            icon: "account"
+                                            text: "Username"
+                                            font_size: 80
+                                            text_color: "#ffffff"
+                                            line_color: 0,0,0,0
+                                            icon_color: "#ffffff"
+                                            _no_ripple_effect: True
+                                        MDLabel:
+                                            text: "Στο κάτω πεδίο θα εμφανίζονται οι συμβουλές"
+                                            color: "#ffffff"
+                                            font_size: 18
+                                            pos_hint: {'center_x': 1,'top':0.7}
+                                MDCard:
+                                    orientation: "vertical"
+                                    md_bg_color: "#eeeeee"
+    
+                        # calendar
+                        DashboardCard:
+                            elevation: 2
+                            padding: 25
+                            spacing:25
+                            orientation: "vertical"
+                            BoxLayout:
+                                orientation:'horizontal'
+                                MDCard:
+                                    orientation: 'vertical'
+                                    md_bg_color: "#eeeeee"
+                                    padding: 5
+                                    spacing:25
+                                    MDLabel:
+                                        text: "Σημειώσεις \n\nΕδώ μπορείτε να γράψετε προσωρινά"
+                                        font_size:30
+                                        height: 20
+                                        halign: "center"
+
+                                TextInput:
+                                    id:Journal
+                                    size_hint: 2,1
+                                    font_size: 20
+                    
+                    # quiz
+                    DashboardCard:
+                        elevation: 2
+                        padding: 25
+                        spacing:25
+                        orientation: "horizontal"
+                        QuizWidget:
+                        
+            #στατιστικά
+            MDScreen:
+                name: "stats"
+                
+                GridLayout:
+                    cols:1
+                    pos_hint: {'center_y': 0.45}
+                    size_hint: 1, 0.9
+                    padding: 25
+                    spacing: 10
+                    
+                    MDCarousel:
+                        id: layout
+                        pos_hint: {'center_x': 0.5}
+                        elevation: 2
+                        orientation: "vertical"
+                    
+                MDLabel: 
+                    text: "Κάντε scroll δείτε περισσότερα στατιστικά στοιχεία"
+                    font_size: 25
+                    color: "#ffffff"     
+                    pos: (670,460)
+                MainScreenButton:
+                    on_release: 
+                        root.screen_manager.current = "dashboard"
+                
+
+            MDScreen:
+                name: "cont_us"
+                MDCard:
+                    size_hint: .3,.5
+                    pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                    elevation: 2
+                    padding: 25
+                    spacing:25
+                    orientation: "vertical"
+                    MDLabel:
+                        text: "Επικοινωνία"
+                        font_style: "H3"
+                        halign: "center"
+                    MDLabel:
+                        text:"E-mail: MindWave@gmail.com"
+                        font_style: "H4"
+                        halign: "center"
+                    MDLabel:
+                        text:"Τηλέφωνο: 123456789"
+                        font_style: "H4"
+
+                MainScreenButton:
+                    on_release: 
+                        root.screen_manager.current = "dashboard"
+            
+            MDScreen:
+                name: "account"
+                MDCard:
+                    size_hint: .3,.7
+                    pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                    elevation: 2
+                    padding: 25
+                    spacing:25
+                    orientation: "vertical"
+                    MDCard:
+                        md_bg_color:"#5F9EA0"
+                        MDLabel:
+                            text: "Username"
+                            font_style: "H3"
+                            color: "#ffffff"
+                            halign: "center"
+                
+                MainScreenButton:    
+                    on_release: 
+                        root.screen_manager.current = "dashboard"
+                    
+
+                    
+
+
+        # Δημιουργία του Drawer
+        MDNavigationDrawer:
+            id: nav_drawer
+            radius: (0, 16, 16, 0)
+
+            
+
+            MDNavigationDrawerMenu:
+                nav_drawer: nav_drawer
+                
+                # Τίτλος του Drawer
+                MDNavigationDrawerHeader:
+                    title: "MindWave"
+                    title_color: "#4a4939"
+                    spacing: "4dp"
+                    padding: "12dp", 0, 0, "12dp"
+
+                MDNavigationDrawerDivider:
+                
+                # Επιλογές του Drawer με εικονίδια
+                DrawerClickableItem:
+                    id: account
+                    icon: "account"
+                    text: "Λογαριασμός"
+                    on_release: 
+                        root.nav_drawer.set_state("close")
+                        root.screen_manager.current = "account"
+                    
+                DrawerClickableItem:
+                    id: stats
+                    icon: "chart-line-variant"
+                    text: "Στατιστικά"
+                    on_release: 
+                        root.nav_drawer.set_state("close")
+                        root.screen_manager.current = "stats"
+                    
+                DrawerClickableItem:
+                    id: calendar
+                    icon: "calendar-multiselect"
+                    text: "Ημερολόγιο"
+                    
+                DrawerClickableItem:
+                    id: notes
+                    icon: "note-outline"
+                    text: "Σημειώσεις"
+                    
+                DrawerClickableItem:
+                    id: settings
+                    icon: "cog"
+                    text: "Ρυθμίσεις"
+                        
+                DrawerClickableItem:
+                    id: contact
+                    icon: "account-group"
+                    text: "Επικοινωνία"
+                    on_release: 
+                        root.nav_drawer.set_state("close")
+                        root.screen_manager.current = "cont_us"
+
+                MDNavigationDrawerDivider:
+                
+                DrawerLabelItem:
+                    icon: "language-python"
+                    text: "Mindwave version 0.0.1"
+            
