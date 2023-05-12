@@ -1,5 +1,3 @@
-#from kivy import Config
-#Config.set('graphics', 'multisamples', '0')
 import json
 import numpy as np
 import datetime
